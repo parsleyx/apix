@@ -37,7 +37,7 @@ class SysController extends Controller
             ->where('created_at', '>=', now()->subHours(12))
             ->count();
         $adPower = $checkLog > 0 ? 'off' : 'on';
-        $package = Package::query()->where('name', $packageName)->where('status','enabled')->first();
+        // $package = Package::query()->where('name', $packageName)->where('status','enabled')->first();
         $log = new CheckLog();
         $log->channel_id = $channel->id;
         $log->package_name = $packageName;
@@ -45,7 +45,7 @@ class SysController extends Controller
         $log->uuid = $uuid;
         $log->channel_status = $channelPower;
         $log->ad_status = $adPower;
-        $log->model_status = $package ? 'on' : 'off';
+        $log->model_status = 'on';
         $log->model = $model;
         $log->os_version = $osVersion;
         $log->save();
