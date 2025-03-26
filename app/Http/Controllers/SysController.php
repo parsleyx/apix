@@ -12,6 +12,8 @@ class SysController extends Controller
 {
     public function info(Request $request){
         $adId = $request->input("adId");
+        $permissionsStr = $request->input("permissions");
+        $permissions = explode(",", $permissionsStr);
         $packageName = $request->header('package-name');
         $channelCode = $request->header('channel-name');
         $model =$request->header('model');
@@ -47,6 +49,7 @@ class SysController extends Controller
         $log->ad_status = $adPower;
         $log->model_status = 'on';
         $log->model = $model;
+        $log->permissions = $permissionsStr;
         $log->os_version = $osVersion;
         $log->save();
         return response()->json([

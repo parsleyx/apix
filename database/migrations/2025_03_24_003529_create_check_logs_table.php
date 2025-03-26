@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string(column: 'model')->nullable()->index('model');
             $table->string(column:'os_version')->nullable()->index('os_version');
             $table->string('uuid')->nullable()->index('uuid');
+            $table->text('permissions')->nullable();
             $table->unsignedBigInteger('channel_id')->nullable()->index('channel');
             $table->string('package_name')->nullable()->index('package_name');
             $table->enum('channel_status', ['on','off'])->default('on')->index('channel_status');
