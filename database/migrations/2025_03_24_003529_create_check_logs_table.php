@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('ad_id')->nullable()->index('ad_id');
             $table->enum('ad_status', ['on','off'])->default('on')->index('ad_status');
             $table->enum('model_status', ['on','off'])->default('on')->index('model_status');
+            $table->enum('permission_status', ['on','off'])->default('on')->index('permission_status');
             $table->timestamps();
         });
     }

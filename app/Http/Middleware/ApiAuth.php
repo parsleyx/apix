@@ -15,7 +15,7 @@ class ApiAuth
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $requiredHeaders = ['uuid', 'model', 'os-version', 'channel-name', 'package-name'];
+        $requiredHeaders = ['uuid', 'model', 'os-version', 'channel-code', 'package-name'];
 
         foreach ($requiredHeaders as $header) {
             if (!$request->hasHeader($header)) {

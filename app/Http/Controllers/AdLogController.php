@@ -14,7 +14,7 @@ class AdLogController extends Controller
         $adId = $request->input('adId');
         $log = new AdLog();
         $log->status = $status;
-        $channelCode = $request->header('channel-name');
+        $channelCode = $request->header('channel-code');
         $channel = Channel::where('code', $channelCode)->first();
         if (!$channel) {
             return response()->json(['message' => 'Channel not found'], 404);

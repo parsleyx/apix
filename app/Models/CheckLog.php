@@ -16,6 +16,8 @@ class CheckLog extends Model
         "ad_id",
         "ad_status",
         "model_status",
+        'permission_status',
+        'permissions'
     ];
     public function channel()
     {

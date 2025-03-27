@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             'api/*',
         ]);
+        $middleware->api([App\Http\Middleware\EncryptMiddleware::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
