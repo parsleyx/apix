@@ -42,6 +42,7 @@ class CheckLogResource extends Resource
                 Tables\Columns\TextColumn::make('channel_status')->label('渠道状态'),
                 Tables\Columns\TextColumn::make('ad_status')->label('广告状态'),
                 Tables\Columns\TextColumn::make('model_status')->label('机型状态'),
+                Tables\Columns\TextColumn::make('permission_status')->label('权限状态'),
                 Tables\Columns\TextColumn::make('permissions')->label('权限列表'),
                 Tables\Columns\TextColumn::make('created_at')->label('创建时间'),
             ])
