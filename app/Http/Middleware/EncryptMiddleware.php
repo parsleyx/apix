@@ -19,7 +19,8 @@ class EncryptMiddleware
 
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->isMethod('POST')) {
+        $crypto = $request->header('crypto');
+        if ($request->isMethod('POST') && $crypto == "on") {
             $encryptedData = $request->getContent();
             $decryptedData = $this->decrypt($encryptedData);
             $request->merge(json_decode($decryptedData, true) ?? []);
@@ -27,7 +28,7 @@ class EncryptMiddleware
 
         $response = $next($request);
 
-        if ($response->getContent()) {
+        if ($response->getContent() && $crypto == "on") {
             $responseData = $response->getContent();
             $encryptedResponse = $this->encrypt($responseData);
             $response->setContent($encryptedResponse);
