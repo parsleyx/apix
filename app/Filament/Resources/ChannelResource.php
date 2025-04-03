@@ -15,7 +15,7 @@ use Filament\Forms\Components\Section;
 use Illuminate\Validation\Rule;
 class ChannelResource extends Resource
 {
-    protected static ?string $label = "渠道管理";
+    protected static ?string $label = "渠道";
     protected static ?string $model = Channel::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

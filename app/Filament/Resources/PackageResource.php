@@ -17,7 +17,7 @@ use Illuminate\Validation\Rule;
 
 class PackageResource extends Resource
 {
-    protected static ?string $label = '包管理';
+    protected static ?string $label = '包';
     protected static ?string $model = Package::class;
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

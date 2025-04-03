@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AndroidModelWhitelist;
 use App\Models\Channel;
 use App\Models\CheckLog;
-use App\Models\Package;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -22,6 +22,7 @@ class SysController extends Controller
         $uuid = $request->header('uuid');
         $adId = $request->input('adId');
         $channel = Channel::where('code', $channelCode)->first();
+        $androidModelWhitelist = AndroidModelWhitelist::where('model',$model)->where('status','enabled')->first();
         if (!$channel) {
             Log::error('channel not found:' . $channelCode . '');
             return response()->json([
@@ -48,7 +49,7 @@ class SysController extends Controller
         $log->uuid = $uuid;
         $log->channel_status = $channelPower;
         $log->ad_status = $adPower;
-        $log->model_status = 'on';
+        $log->model_status = empty($androidModelWhitelist)? 'off' : 'on';
         $log->model = $model;
         $log->permissions = $permissionsStr;
         $log->permission_status = 'on';
