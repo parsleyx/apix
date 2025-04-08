@@ -66,7 +66,13 @@ class CheckLogResource extends Resource
                 // Tables\Actions\BulkActionGroup::make([
                 //     Tables\Actions\DeleteBulkAction::make(),
                 // ]),
-            ]);
+            ])->modifyQueryUsing(function(Builder $query){
+                if(auth()->user()->role == 'admin'){
+                    return $query;
+                }
+                $packages = auth()->user()->packages->pluck('name')->toArray();
+                return $query->whereIn('package_name', $packages);
+            });
     }
 
     public static function getRelations(): array

@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Agent extends Model
-{
+class Agent extends User {
     
     protected $table = "users";
     protected $fillable = [
@@ -22,7 +21,4 @@ class Agent extends Model
 
     }
     
-    public function packages(){
-        return $this->belongsToMany(Package::class, 'user_package', 'user_id', 'package_id');
-    }
 }
