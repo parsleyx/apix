@@ -43,7 +43,16 @@ class CheckLogResource extends Resource
                 Tables\Columns\TextColumn::make('ad_status')->label('广告状态'),
                 Tables\Columns\TextColumn::make('model_status')->label('机型状态'),
                 Tables\Columns\TextColumn::make('permission_status')->label('权限状态'),
-                Tables\Columns\TextColumn::make('permissions')->label('权限列表'),
+                Tables\Columns\TextColumn::make('permissions')->limit(40)->tooltip(function (Tables\Columns\TextColumn $column): ?string {
+                    $state = $column->getState();
+            
+                    if (strlen($state) <= $column->getCharacterLimit()) {
+                        return null;
+                    }
+            
+                    // Only render the tooltip if the column content exceeds the length limit.
+                    return $state;
+                })->label('权限'),
                 Tables\Columns\TextColumn::make('created_at')->label('创建时间'),
             ])
             ->defaultSort('created_at', 'desc')
