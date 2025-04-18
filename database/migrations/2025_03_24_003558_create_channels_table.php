@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code')->index('code');
             $table->enum('power', ['on','off'])->default('on');
+            $table->integer('time_limit')->default(12);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -10,5 +10,6 @@ class Channel extends Model
         'name',
         'code',
         "power",
+        'time_limit'
     ];
 }

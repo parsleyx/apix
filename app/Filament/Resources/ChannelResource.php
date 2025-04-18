@@ -25,6 +25,7 @@ class ChannelResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')->label('名称')->columnSpan(5),
+                Forms\Components\TextInput::make('time_limit')->numeric(false)->label('限制时间(小时)')->columnSpan(5),
                 Forms\Components\TextInput::make('code')
                 ->required()
                 ->rules(['required',  fn ($record) => Rule::unique('channels', 'code')->ignore($record)])

@@ -32,13 +32,12 @@ class SysController extends Controller
         }
         $channelPower = $channel->power ?? 'off';
         Log::info($packageName);
-        // 查询最近12小时内的记录数量
         $checkLog = CheckLog::query()
             ->where('uuid', $uuid)
             ->where('package_name', $packageName)
             ->where('channel_id', $channel->id)
             ->where('ad_id', $adId)
-            ->where('created_at', '>=', now()->subHours(12))
+            ->where('created_at', '>=', now()->subHours($channel->time_limit))
             ->count();
         $adPower = $checkLog > 0 ? 'off' : 'on';
         // $package = Package::query()->where('name', $packageName)->where('status','enabled')->first();
