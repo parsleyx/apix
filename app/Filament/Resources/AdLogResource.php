@@ -59,7 +59,7 @@ class AdLogResource extends Resource
                 }
                 $packages = auth()->user()->packages->pluck('name')->toArray();
                 return $query->whereIn('package_name', $packages);
-            });;
+            });
     }
 
     public static function getRelations(): array
